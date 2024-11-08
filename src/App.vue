@@ -22,8 +22,12 @@ export default {
     };
   },
   methods: {
+    getRandomOffset() {
+      return Math.floor(Math.random() * 1018);
+    },
     async fetchPokemons() {
-      const path = "https://pokeapi.co/api/v2/pokemon?limit=20";
+      const offset = this.getRandomOffset();
+      const path = `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=20`;
       try {
         const response = await axios.get(path);
         const results = response.data.results;
